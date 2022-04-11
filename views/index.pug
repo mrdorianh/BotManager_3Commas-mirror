@@ -1,0 +1,36 @@
+extends layout
+
+block layout-content
+  div.View.WelcomeView
+    h1.Banner #{title}
+    form(method="post" action="/mirror").Message#botsettingsform
+      div.Title
+        p (3Commas)
+        h2 Long Bot Template
+      div.BotSettingsBO
+        h3 Buy Order
+        p BO Size ($): 
+          input(type='number' name='base_order_volume' value=currentMirrorSettings.base_order_volume)
+        p Order Type (market/limit): 
+          input(type='text' name='start_order_type' value=currentMirrorSettings.start_order_type)
+      div.BotSettingsSO
+        h3 Safety Order
+        p SO Size ($)
+          input(type='number' name='safety_order_volume' value=currentMirrorSettings.safety_order_volume)
+        p Size Scale (#)
+          input(type='number' name='martingale_volume_coefficient' value=currentMirrorSettings.martingale_volume_coefficient)
+        p First Dev (%)
+          input(type='number' name='safety_order_step_percentage' value=currentMirrorSettings.safety_order_step_percentage)
+        p Step Scale (#)
+          input(type='number' name='martingale_step_coefficient' value=currentMirrorSettings.martingale_step_coefficient)
+        p Max Orders (#)
+          input(type='number' name='max_safety_orders' value=currentMirrorSettings.max_safety_orders)
+        p Max Active (#)
+          input(type='number' name='active_safety_orders_count' value=currentMirrorSettings.active_safety_orders_count)
+        div.Results
+          <br>
+          p.result #{result}
+      span.Details Not in association with 3commas.io!
+      div.NavButtons
+        a(onclick="javascript:document.getElementById('botsettingsform').submit()")
+          div.NavButton Mirror that shiz!
